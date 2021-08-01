@@ -13,12 +13,18 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Admin Dashboard',
-      home: Container(),
+      // home: Container(),
       initialRoute: '/',
       onGenerateRoute: Flurorouter.router.generator,
       builder: (_, child) {
-        return AuthLayout();
+        return AuthLayout(
+          child: child!,
+        );
       },
+      theme: ThemeData.light().copyWith(
+          scrollbarTheme: ScrollbarThemeData().copyWith(
+              thumbColor:
+                  MaterialStateProperty.all(Colors.grey.withOpacity(0.5)))),
     );
   }
 }
