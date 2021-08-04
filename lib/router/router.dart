@@ -11,9 +11,12 @@ class Flurorouter {
   static String dashboardRoute = '/dashboard';
 
   static void configureRoutes() {
-    router.define(rootRoute, handler: AdminHandlers.login);
-    router.define(loginRoute, handler: AdminHandlers.login);
-    router.define(registerRoute, handler: AdminHandlers.login);
+    router.define(rootRoute,
+        handler: AdminHandlers.login, transitionType: TransitionType.none);
+    router.define(loginRoute,
+        handler: AdminHandlers.login, transitionType: TransitionType.none);
+    router.define(registerRoute,
+        handler: AdminHandlers.register, transitionType: TransitionType.none);
     //ToDo: Da aggiungere route
     //router.define(dashboardRoute, handler: dashboardHandler);
     router.notFoundHandler = NoPageFoundHandlers.noPageFound;

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class CustomAutlinedButton extends StatelessWidget {
+class CustomOutlinedButton extends StatelessWidget {
   final Function onPressed;
   final String text;
   final Color color;
   final bool isFilled;
-  const CustomAutlinedButton(
+  const CustomOutlinedButton(
       {Key? key,
       required this.onPressed,
       required this.text,
