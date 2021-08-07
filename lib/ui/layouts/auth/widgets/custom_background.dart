@@ -5,8 +5,7 @@ class CustomBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: Container(
+    return Container(
       decoration: builBoxDecoration(),
       child: Container(
         constraints: BoxConstraints(maxWidth: 400),
@@ -19,7 +18,7 @@ class CustomBackground extends StatelessWidget {
           ),
         ),
       ),
-    ));
+    );
   }
 
   BoxDecoration builBoxDecoration() {
