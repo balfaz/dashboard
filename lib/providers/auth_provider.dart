@@ -1,4 +1,6 @@
+import 'package:admin_dashboard/router/router.dart';
 import 'package:admin_dashboard/services/local_storage.dart';
+import 'package:admin_dashboard/services/navigator_service.dart';
 import 'package:flutter/cupertino.dart';
 
 enum AuthStatus { checking, authenticated, notAuthenticate }
@@ -16,6 +18,8 @@ class AuthProvider extends ChangeNotifier {
     LocalStorage.prefs.setString('token', this._token!);
     authStatus = AuthStatus.authenticated;
     notifyListeners();
+    NavigationService.replaceTo(Flurorouter.dashboardRoute);
+    //isAuthenticated();
   }
 
   Future<bool> isAuthenticated() async {
