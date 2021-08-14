@@ -17,4 +17,19 @@ class CustomInput {
           color: Colors.grey,
         ));
   }
+
+  static InputDecoration searchInputDecoration({
+    required String hint,
+    required IconData icon,
+  }) {
+    return InputDecoration(
+        border: InputBorder.none,
+        enabledBorder: InputBorder.none,
+        hintText: hint,
+        prefixIcon: Icon(icon),
+        labelStyle: TextStyle(
+          color: Colors.grey,
+        ),
+        hintStyle: TextStyle(color: Colors.grey));
+  }
 }
