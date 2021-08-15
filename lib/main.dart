@@ -35,7 +35,7 @@ class AppState extends StatelessWidget {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    print('token : ${LocalStorage.prefs.getString('token')}');
+    //print('token : ${LocalStorage.prefs.getString('token')}');
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Admin Dashboard',
