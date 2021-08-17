@@ -10,6 +10,8 @@ class Flurorouter {
   static String loginRoute = '/auth/login';
   static String registerRoute = '/auth/register';
   static String dashboardRoute = '/dashboard';
+  static String iconsRoute = '/dashboard/icons';
+  static String blankRoute = '/dashboard/blank';
 
   static void configureRoutes() {
     router.define(rootRoute,
@@ -21,6 +23,10 @@ class Flurorouter {
     router.define(dashboardRoute,
         handler: DashboardHandlers.dashboard,
         transitionType: TransitionType.none);
+    router.define(iconsRoute,
+        handler: DashboardHandlers.icons, transitionType: TransitionType.none);
+    router.define(blankRoute,
+        handler: DashboardHandlers.blank, transitionType: TransitionType.none);
     //ToDo: Da aggiungere route
     //router.define(dashboardRoute, handler: dashboardHandler);
     router.notFoundHandler = NoPageFoundHandlers.noPageFound;
