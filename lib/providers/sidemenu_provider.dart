@@ -10,8 +10,9 @@ class SidemenuProvider extends ChangeNotifier {
 
   void setCurrentPageUrl(String routeName) {
     _currentPage = routeName;
-    Future.delayed(Duration(milliseconds: 100));
-    notifyListeners();
+    Future.delayed(Duration(milliseconds: 100), () {
+      notifyListeners();
+    });
   }
 
   static Animation<double> movement = Tween<double>(begin: -200, end: 0)

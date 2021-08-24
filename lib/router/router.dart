@@ -27,8 +27,6 @@ class Flurorouter {
         handler: DashboardHandlers.icons, transitionType: TransitionType.none);
     router.define(blankRoute,
         handler: DashboardHandlers.blank, transitionType: TransitionType.none);
-    //ToDo: Da aggiungere route
-    //router.define(dashboardRoute, handler: dashboardHandler);
     router.notFoundHandler = NoPageFoundHandlers.noPageFound;
   }
 }

@@ -29,7 +29,7 @@ class _DashboardLayoutState extends State<DashboardLayout>
           children: [
             Row(
               children: [
-                if (size.width >= 700) Sidebar(),
+                if (size.width > 700) Sidebar(),
                 Expanded(
                   child: Column(
                     children: [
@@ -45,7 +45,7 @@ class _DashboardLayoutState extends State<DashboardLayout>
                 )
               ],
             ),
-            if (size.width < 700)
+            if (size.width <= 700)
               AnimatedBuilder(
                   animation: SidemenuProvider.menuController,
                   builder: (context, _) => Stack(

@@ -2,9 +2,9 @@ import 'package:admin_dashboard/providers/auth_provider.dart';
 import 'package:admin_dashboard/providers/sidemenu_provider.dart';
 import 'package:admin_dashboard/router/router.dart';
 import 'package:admin_dashboard/ui/views/blank_view.dart';
-import 'package:admin_dashboard/ui/views/dashboard_view.dart';
+import 'package:admin_dashboard/ui/views/dashboard_views.dart';
 import 'package:admin_dashboard/ui/views/icons_view.dart';
-import 'package:admin_dashboard/ui/views/login_view.dart';
+import 'package:admin_dashboard/ui/views/login_views.dart';
 import 'package:fluro/fluro.dart';
 import 'package:provider/provider.dart';
 

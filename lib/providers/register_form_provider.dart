@@ -10,6 +10,11 @@ class RegisterFormProvider extends ChangeNotifier {
   String nome = '';
 
   validateForm() {
-    formKey.currentState!.validate();
+    if (formKey.currentState!.validate()) {
+      return true;
+    } else {
+      print("Form not valid");
+      return false;
+    }
   }
 }
