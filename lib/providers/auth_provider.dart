@@ -18,12 +18,19 @@ class AuthProvider extends ChangeNotifier {
   }
 
   login(String email, String password) {
-    this._token = 'sdfuoiho13iounf934';
-    LocalStorage.prefs.setString('token', this._token!);
-    authStatus = AuthStatus.authenticated;
-    notifyListeners();
-    NavigationService.replaceTo(Flurorouter.dashboardRoute);
-    //isAuthenticated();
+    final data = {'correo': email, 'password': password};
+    CafeApi.post('/auth/login', data).then((json) {
+      final authResponse = AuthResponse.fromMap(json);
+      this.user = authResponse.usuario;
+      authStatus = AuthStatus.authenticated;
+      LocalStorage.prefs.setString('token', authResponse.token);
+      NavigationService.replaceTo(Flurorouter.dashboardRoute);
+      CafeApi.configureDio();
+      notifyListeners();
+    }).catchError((e) {
+      NotificationService.showSnackbarError(
+          'Error User / Password, \n por favor verificar');
+    });
   }
 
   register(String email, String password, String name) {
@@ -36,6 +43,7 @@ class AuthProvider extends ChangeNotifier {
       LocalStorage.prefs.setString('token', authResponse.token);
       authStatus = AuthStatus.authenticated;
       NavigationService.replaceTo(Flurorouter.dashboardRoute);
+      CafeApi.configureDio();
       notifyListeners();
     }).catchError((e) {
       NotificationService.showSnackbarError(
@@ -51,9 +59,25 @@ class AuthProvider extends ChangeNotifier {
       return false;
     }
 
-    await Future.delayed(Duration(milliseconds: 1000));
-    authStatus = AuthStatus.authenticated;
+    try {
+      final resp = await CafeApi.httpGet('/auth');
+      final authResponse = AuthResponse.fromMap(resp);
+      LocalStorage.prefs.setString('token', authResponse.token);
+
+      this.user = authResponse.usuario;
+      notifyListeners();
+      authStatus = AuthStatus.authenticated;
+      return true;
+    } catch (e) {
+      authStatus = AuthStatus.notAuthenticate;
+      notifyListeners();
+      return false;
+    }
+  }
+
+  logout() {
+    LocalStorage.prefs.remove('token');
+    authStatus = AuthStatus.notAuthenticate;
     notifyListeners();
-    return true;
   }
 }

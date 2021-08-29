@@ -32,6 +32,8 @@ class LoginView extends StatelessWidget {
                     child: Column(
                       children: [
                         TextFormField(
+                          onFieldSubmitted: (_) =>
+                              onFormSubmit(loginFormProvider, authProvider),
                           onChanged: (value) => loginFormProvider.email = value,
                           validator: (value) {
                             if (!EmailValidator.validate(value ?? ''))
@@ -49,7 +51,10 @@ class LoginView extends StatelessWidget {
                           height: 20,
                         ),
                         TextFormField(
-                          onChanged: (value) => loginFormProvider.password,
+                          onFieldSubmitted: (_) =>
+                              onFormSubmit(loginFormProvider, authProvider),
+                          onChanged: (value) =>
+                              loginFormProvider.password = value,
                           validator: (value) {
                             if (value == null || value.isEmpty)
                               return 'Inserire Password';
@@ -69,13 +74,8 @@ class LoginView extends StatelessWidget {
                           height: 20,
                         ),
                         CustomOutlinedButton(
-                          onPressed: () {
-                            final isValid = loginFormProvider.validateForm();
-                            if (isValid) {
-                              authProvider.login(loginFormProvider.email,
-                                  loginFormProvider.password);
-                            }
-                          },
+                          onPressed: () =>
+                              onFormSubmit(loginFormProvider, authProvider),
                           text: 'Ingresar',
                           isFilled: true,
                         ),
@@ -95,5 +95,13 @@ class LoginView extends StatelessWidget {
             ),
           );
         }));
+  }
+
+  void onFormSubmit(
+      LoginFormProvider loginFormProvider, AuthProvider authProvider) {
+    final isValid = loginFormProvider.validateForm();
+    if (isValid) {
+      authProvider.login(loginFormProvider.email, loginFormProvider.password);
+    }
   }
 }
