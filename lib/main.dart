@@ -1,5 +1,6 @@
 import 'package:admin_dashboard/api/cafeapi.dart';
 import 'package:admin_dashboard/providers/auth_provider.dart';
+import 'package:admin_dashboard/providers/categories_provider.dart';
 import 'package:admin_dashboard/providers/sidemenu_provider.dart';
 import 'package:admin_dashboard/router/router.dart';
 import 'package:admin_dashboard/services/local_storage.dart';
@@ -29,7 +30,8 @@ class AppState extends StatelessWidget {
           lazy: false,
           create: (_) => AuthProvider(),
         ),
-        ChangeNotifierProvider(lazy: false, create: (_) => SidemenuProvider())
+        ChangeNotifierProvider(lazy: false, create: (_) => SidemenuProvider()),
+        ChangeNotifierProvider(create: (_) => CategoriesProvider())
       ],
       child: MyApp(),
     );
@@ -39,11 +41,9 @@ class AppState extends StatelessWidget {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //print('token : ${LocalStorage.prefs.getString('token')}');
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Admin Dashboard',
-      // home: Container(),
       initialRoute: '/',
       onGenerateRoute: Flurorouter.router.generator,
       navigatorKey: NavigationService.navigatorKey,

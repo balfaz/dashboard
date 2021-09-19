@@ -9,7 +9,7 @@ import 'package:flutter/cupertino.dart';
 enum AuthStatus { checking, authenticated, notAuthenticate }
 
 class AuthProvider extends ChangeNotifier {
-  String? _token;
+  //String? _token;
   AuthStatus authStatus = AuthStatus.checking;
   Usuario? user;
 
